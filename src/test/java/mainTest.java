@@ -1,5 +1,8 @@
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
+
+import java.math.BigDecimal;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class mainTest {
 
@@ -22,7 +25,20 @@ public class mainTest {
         var distance = main.calculateDistance(lat1, lon1, lat2, lon2, distanceUnit);
 
         // Then
-        Assertions.assertThat(distance).isEqualTo(397.4);
+        assertThat(distance).isEqualTo(new BigDecimal("397.4"));
     }
+
+    @Test
+    public void should_calculate_distance_between_two_cities() {
+//        Given
+        var distanceUnit = Main.DistanceUnit.KM;
+
+        // When
+        var distance = main.calculateDistance(Main.City.PARIS, Main.City.LYON, distanceUnit);
+
+        // Then
+        assertThat(distance).isEqualTo(new BigDecimal("397.4"));
+    }
+
 
 }
